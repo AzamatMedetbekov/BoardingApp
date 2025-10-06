@@ -8,6 +8,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF0F0F0),
       appBar: HomeHeader(),
       body: Padding(
         padding: const EdgeInsets.all(8),
@@ -21,7 +22,6 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: const [
                   ProfileInfoRow(label: "닉네임", content: "infoteam"),
-                  SizedBox(height: 10),
                   ProfileInfoRow(label: "이메일", content: "infoteam@gistory.me"),
                 ],
               ),

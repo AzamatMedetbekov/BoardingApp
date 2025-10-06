@@ -12,7 +12,7 @@ class ProfileInfoRow extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(14, 15, 14, 14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Colors.white,
+        color: const Color(0xFFF0F0F0),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
