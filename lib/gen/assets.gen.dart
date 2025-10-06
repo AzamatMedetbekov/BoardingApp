@@ -26,6 +26,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
+  /// File path: assets/icons/new_board.svg
+  String get newBoard => 'assets/icons/new_board.svg';
+
   /// File path: assets/icons/person.svg
   String get person => 'assets/icons/person.svg';
 
@@ -44,6 +47,7 @@ class $AssetsIconsGen {
     filledPerson,
     filledSquares,
     home,
+    newBoard,
     person,
     search,
     squares,

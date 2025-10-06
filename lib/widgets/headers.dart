@@ -58,3 +58,25 @@ class SectionHeader extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
+
+class BoardHeader extends StatelessWidget implements PreferredSizeWidget {
+  const BoardHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: const Text(
+        "나의 게시판 앱",
+        style: TextStyle(fontWeight: FontWeight.w700),
+      ),
+      titleSpacing: 20,
+      actions: [
+        GestureDetector(child: SvgPicture.asset(Assets.icons.newBoard)),
+        SizedBox(width: 20),
+      ],
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}

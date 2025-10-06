@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
           NoticeCard(title: "게시글 제목", content: Text("공지 내용")),
           SizedBox(height: 20),
           NoticeCard(title: "게시글 제목", content: Text("공지 내용")),
-          SizedBox(height: 20),
+          SizedBox(height: 13),
         ],
       ),
     );

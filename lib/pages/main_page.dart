@@ -18,8 +18,8 @@ class _MainPageState extends State<MainPage> {
     
   final List<Widget> _pages = [
     const HomePage(),
-    const ProfilePage(),
     const BoardPage(),
+    const ProfilePage(),
   ];
 
   void _onTabTapped(int index){
