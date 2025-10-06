@@ -12,6 +12,15 @@
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/filled_home.svg
+  String get filledHome => 'assets/icons/filled_home.svg';
+
+  /// File path: assets/icons/filled_person.svg
+  String get filledPerson => 'assets/icons/filled_person.svg';
+
+  /// File path: assets/icons/filled_squares.svg
+  String get filledSquares => 'assets/icons/filled_squares.svg';
+
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
@@ -28,7 +37,16 @@ class $AssetsIconsGen {
   String get write => 'assets/icons/write.svg';
 
   /// List of all assets
-  List<String> get values => [home, person, search, squares, write];
+  List<String> get values => [
+    filledHome,
+    filledPerson,
+    filledSquares,
+    home,
+    person,
+    search,
+    squares,
+    write,
+  ];
 }
 
 class Assets {

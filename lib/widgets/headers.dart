@@ -12,10 +12,12 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
         "나의 게시판 앱",
         style: TextStyle(fontWeight: FontWeight.w700),
       ),
+      titleSpacing: 20,
       actions: [
         GestureDetector(child: SvgPicture.asset(Assets.icons.search)),
         SizedBox(width: 16),
         GestureDetector(child: SvgPicture.asset(Assets.icons.write)),
+        SizedBox(width: 20),
       ],
     );
   }
@@ -35,6 +37,7 @@ class SectionHeader extends StatelessWidget implements PreferredSizeWidget {
         "게시판 선택",
         style: TextStyle(fontWeight: FontWeight.w700),
       ),
+      titleSpacing: 20,
       centerTitle: true,
       actions: [
         GestureDetector(
@@ -47,6 +50,7 @@ class SectionHeader extends StatelessWidget implements PreferredSizeWidget {
         GestureDetector(child: SvgPicture.asset(Assets.icons.search)),
         SizedBox(width: 16),
         GestureDetector(child: SvgPicture.asset(Assets.icons.write)),
+        SizedBox(width: 20),
       ],
     );
   }

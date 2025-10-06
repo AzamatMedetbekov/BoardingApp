@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BoardCard extends StatelessWidget {
-  const BoardCard({super.key, required this.title, required this.content});
+class NoticeCard extends StatelessWidget {
+  const NoticeCard({super.key, required this.title, required this.content});
 
   final String title;
   final Widget content;
