@@ -57,10 +57,7 @@ class BoardCard extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 24,
-          ),
+          const Icon(Icons.arrow_forward_ios_rounded, size: 24),
         ],
       ),
     );

@@ -4,10 +4,8 @@ import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/profile_page.dart';
 import 'package:flutter_application_1/widgets/navbar.dart';
 
-class MainPage extends StatefulWidget{
-  const MainPage({
-    super.key
-  });
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -15,28 +13,28 @@ class MainPage extends StatefulWidget{
 
 class _MainPageState extends State<MainPage> {
   int _currentPageIndex = 0;
-    
+
   final List<Widget> _pages = [
     const HomePage(),
     const BoardPage(),
     const ProfilePage(),
   ];
 
-  void _onTabTapped(int index){
+  void _onTabTapped(int index) {
     setState(() {
       _currentPageIndex = index;
     });
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_currentPageIndex],
 
       bottomNavigationBar: Navbar(
         currentIndex: _currentPageIndex,
-        onTabTapped: _onTabTapped, 
+        onTabTapped: _onTabTapped,
       ),
     );
   }
-} 
+}

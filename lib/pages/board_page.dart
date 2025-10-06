@@ -30,7 +30,7 @@ class BoardPage extends StatelessWidget {
           BoardCard(content: "버튼 이름"),
           SizedBox(height: 13),
         ],
-      )
+      ),
     );
   }
 }
