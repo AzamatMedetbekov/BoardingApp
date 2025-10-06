@@ -1,30 +1,22 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/gen/assets.gen.dart'; 
+import 'package:flutter_application_1/gen/assets.gen.dart';
 
-class Navbar extends StatefulWidget{
-    const Navbar({
-      super.key,
-    });
+class Navbar extends StatelessWidget {
+  const Navbar({
+    super.key,
+    required this.currentIndex,
+    required this.onTabTapped,
+  });
 
-  @override 
-  State<Navbar> createState() => _NavbarState();
-}
-
-class _NavbarState extends State<Navbar> {
-  int currentPageIndex = 0;
-
-  void _onTabTapped(int index){
-    setState(() {
-      currentPageIndex = index;
-    });
-  }
+  final Function(int) onTabTapped;
+  final int currentIndex;
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: currentPageIndex,
-      onTap: _onTabTapped,
+      currentIndex: currentIndex,
+      onTap: onTabTapped,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       items: [
@@ -43,7 +35,7 @@ class _NavbarState extends State<Navbar> {
           icon: SvgPicture.asset(Assets.icons.person),
           label: 'Profile',
         ),
-      ]
+      ],
     );
   }
 }
