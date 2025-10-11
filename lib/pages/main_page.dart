@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/board_page.dart';
+import 'package:flutter_application_1/pages/tag_page.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/profile_page.dart';
 import 'package:flutter_application_1/widgets/navbar.dart';
@@ -16,7 +16,7 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _pages = [
     HomePage(),
-    const BoardPage(),
+    const TagPage(),
     const ProfilePage(),
   ];
 

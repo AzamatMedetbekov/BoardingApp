@@ -33,8 +33,8 @@ class NoticeCard extends StatelessWidget {
   }
 }
 
-class BoardCard extends StatelessWidget {
-  const BoardCard({super.key, required this.content});
+class TagCard extends StatelessWidget {
+  const TagCard({super.key, required this.content});
 
   final String content;
 

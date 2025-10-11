@@ -1,12 +1,12 @@
 import 'dart:convert';
-
-import 'package:flutter_application_1/data/models/board_model.dart';
+import 'package:flutter_application_1/data/models/tag_list_model.dart';
+import 'package:flutter_application_1/data/models/tag_model.dart';
 import 'package:http/http.dart' as http;
 
-class BoardApi {
+class TagApi {
   static const String _baseUrl = 'https://api.stg.ziggle.gistory.me';
 
-  Future<List<BoardModel>> getBoards() async {
+  Future<TagListModel> getTags() async {
     final url = Uri.parse('$_baseUrl/tag');
 
     try {
@@ -15,13 +15,13 @@ class BoardApi {
       if (response.statusCode == 200) {
         final List<dynamic> jsonList = json.decode(response.body);
 
-        final List<BoardModel> boards = jsonList.map((jsonItem) {
-          return BoardModel.fromJson(jsonItem);
+        final List<TagModel> tags = jsonList.map((jsonItem) {
+          return TagModel.fromJson(jsonItem);
         }).toList();
 
-        return boards;
+        return TagListModel(count: tags.length, list: tags);
       } else {
-        throw Exception('Failed to load boards from the server');
+        throw Exception('Failed to load tags from the server');
       }
     } catch (error) {
       throw Exception('Internal server error: $error');

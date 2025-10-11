@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/data/data_sources/remote/board_api.dart';
-import 'package:flutter_application_1/data/models/board_model.dart';
+import 'package:flutter_application_1/data/data_sources/remote/tag_api.dart';
+import 'package:flutter_application_1/data/models/tag_list_model.dart';
 import 'package:flutter_application_1/widgets/headers.dart';
 import 'package:flutter_application_1/widgets/notice.dart';
 
-class BoardPage extends StatefulWidget {
-  const BoardPage({super.key});
+class TagPage extends StatefulWidget {
+  const TagPage({super.key});
 
   @override
-  State<BoardPage> createState() => _BoardPageState();
+  State<TagPage> createState() => _TagPageState();
 }
 
-class _BoardPageState extends State<BoardPage> {
-  final BoardApi _boardApi = BoardApi();
+class _TagPageState extends State<TagPage> {
+  final TagApi _tagApi = TagApi();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF0F0F0),
-      appBar: BoardHeader(),
+      appBar: TagHeader(),
       body: FutureBuilder(
-        future: _boardApi.getBoards(),
+        future: _tagApi.getTags(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -31,20 +31,20 @@ class _BoardPageState extends State<BoardPage> {
           }
 
           if (snapshot.hasData) {
-            final List<BoardModel> tags = snapshot.data!;
+            final TagListModel tags = snapshot.data!;
 
-            if (tags.isEmpty) {
-              return const Center(child: Text('No boards found.'));
+            if (tags.count == 0) {
+              return const Center(child: Text('No Tags found.'));
             }
 
             return ListView.builder(
               padding: const EdgeInsets.all(16.0),
-              itemCount: tags.length,
+              itemCount: tags.count,
               itemBuilder: (context, index) {
-                final tag = tags[index];
+                final tag = tags.list[index];
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
-                  child: BoardCard(content: tag.name),
+                  child: TagCard(content: tag.name),
                 );
               },
             );
