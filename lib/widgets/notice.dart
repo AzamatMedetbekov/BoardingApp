@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/data/models/notice_model.dart';
 
 class NoticeCard extends StatelessWidget {
-  const NoticeCard({super.key, required this.title, required this.content});
+  const NoticeCard({super.key, required this.notice});
 
-  final String title;
-  final Widget content;
+  final NoticeModel notice;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class NoticeCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
+            notice.title,
             style: TextStyle(
               color: const Color(0xFF252525),
               fontSize: 16,
@@ -26,7 +26,49 @@ class NoticeCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          content,
+          if(notice.imageUrls.isNotEmpty) ...[
+            SizedBox(
+              height:100,
+              child:ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: notice.imageUrls.length,
+                itemBuilder: (context, index){
+                  final imageUrl = notice.imageUrls[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(8),
+                      child: Image.network(
+                        imageUrl,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if(loadingProgress == null) return child;
+                          return Container(
+                            width: 100,
+                            height: 100,
+                            color: Colors.grey[200],
+                            child: const Center(child: CircularProgressIndicator()),
+                          );
+                        },
+                        errorBuilder: (context, child, stackTrace){
+                          return Container(
+                            width: 100,
+                            height: 100,
+                            color: Colors.grey[200],
+                            child: const Icon(Icons.broken_image, color: Colors.grey),
+                          );
+                        },
+                      )
+                    )
+                  );
+                },
+                )
+            )
+          ],
+          const SizedBox(height: 12),
+          Text(notice.content),
         ],
       ),
     );

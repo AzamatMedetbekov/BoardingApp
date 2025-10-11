@@ -9,10 +9,10 @@ abstract class ApiClient{
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
   
   @GET('/api/notice')
-  Future<NoticeListModel> getPostListByTag(
+  Future<NoticeListModel> getNoticeListByTag(
     @Query('tags') String tag,
   );
 
   @GET('/api/notice')
-  Future<NoticeListModel> getPostList();
+  Future<NoticeListModel> getNoticeList();
 }

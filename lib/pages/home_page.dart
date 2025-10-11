@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xFFF0F0F0),
       appBar: HomeHeader(),
       body: FutureBuilder(
-        future: _apiClient.getPostList(),
+        future: _apiClient.getNoticeList(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -42,13 +42,10 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(16),
               itemCount: notices.total,
               itemBuilder: (context, index) {
-                final post = notices.list[index];
+                final notice = notices.list[index];
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
-                  child: NoticeCard(
-                    title: post.title,
-                    content: Text(post.content),
-                  ),
+                  child: NoticeCard(notice: notice),
                 );
               },
             );
