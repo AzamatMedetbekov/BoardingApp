@@ -1,32 +1,60 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/gen/assets.gen.dart';
+import 'package:flutter_application_1/data/data_sources/remote/api_client.dart';
+import 'package:flutter_application_1/data/models/post_model.dart';
 import 'package:flutter_application_1/widgets/headers.dart';
 import 'package:flutter_application_1/widgets/notice.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final ApiClient _apiClient = ApiClient(Dio());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF0F0F0),
       appBar: HomeHeader(),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          NoticeCard(title: "게시글 제목", content: Text("공지 내용")),
-          SizedBox(height: 20),
-          NoticeCard(title: "게시글 제목", content: Text("공지 내용")),
-          SizedBox(height: 20),
-          NoticeCard(
-            title: "게시글 제목",
-            content: Assets.images.illuminatePost.image(),
-          ),
-          SizedBox(height: 20),
-          NoticeCard(title: "게시글 제목", content: Text("공지 내용")),
-          SizedBox(height: 20),
-          NoticeCard(title: "게시글 제목", content: Text("공지 내용")),
-          SizedBox(height: 13),
-        ],
+      body: FutureBuilder(
+        future: _apiClient.getPostList(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return Center(child: Text('An error occurred: ${snapshot.error}'));
+          }
+
+          if (snapshot.hasData) {
+            final List<PostModel> posts = snapshot.data!;
+
+            if (posts.isEmpty) {
+              return const Center(child: Text('No posts found'));
+            }
+
+            return ListView.builder(
+              padding: EdgeInsets.all(16),
+              itemCount: posts.length,
+              itemBuilder: (context, index) {
+                final post = posts[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12.0),
+                  child: NoticeCard(
+                    title: post.title,
+                    content: Text(post.content),
+                  ),
+                );
+              },
+            );
+          }
+          return const Center(child: Text('Something went wrong'));
+        },
       ),
     );
   }
