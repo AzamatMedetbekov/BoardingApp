@@ -5,7 +5,7 @@ part 'tag_list_model.freezed.dart';
 part 'tag_list_model.g.dart';
 
 @freezed
-class TagListModel with _$TagListModel {
+sealed class TagListModel with _$TagListModel {
   const TagListModel._();
 
   const factory TagListModel({

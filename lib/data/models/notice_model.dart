@@ -5,10 +5,10 @@ part 'notice_model.freezed.dart';
 part 'notice_model.g.dart';
 
 @freezed
-class NoticeModel with _$NoticeModel {
+sealed class NoticeModel with _$NoticeModel {
   const NoticeModel._();
 
-  factory NoticeModel({
+  const factory NoticeModel({
     required int id,
     required String title,
     required String content,

@@ -5,11 +5,13 @@ part 'notice_list_model.g.dart';
 part 'notice_list_model.freezed.dart';
 
 @freezed
-class NoticeListModel with _$NoticeListModel {
+sealed class NoticeListModel with _$NoticeListModel {
   const NoticeListModel._();
 
-  factory NoticeListModel({required int total, required List<NoticeModel> list}) =
-      _NoticeListModel;
+  const factory NoticeListModel({
+    required int total,
+    required List<NoticeModel> list,
+  }) = _NoticeListModel;
 
   factory NoticeListModel.fromJson(Map<String, dynamic> json) =>
       _$NoticeListModelFromJson(json);

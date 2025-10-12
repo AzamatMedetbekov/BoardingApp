@@ -56,11 +56,11 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
   flutter_gen_runner: ^5.10.0 
-  build_runner: ^2.7.1   
+  build_runner: any   
   auto_route_generator: ^10.2.4
   retrofit_generator: ^10.0.1
-  json_serializable: ^6.10.0
-  freezed: ^3.2.3
+  json_serializable: any
+  freezed: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
