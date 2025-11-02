@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xFFF0F0F0),
       appBar: HomeHeader(),
       body: FutureBuilder(
-        future: _apiClient.getNoticeList(),
+        future: _apiClient.getPostList(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -32,20 +32,20 @@ class _HomePageState extends State<HomePage> {
           }
 
           if (snapshot.hasData) {
-            final NoticeListModel notices = snapshot.data!;
+            final PostListModel posts = snapshot.data!;
 
-            if (notices.total == 0) {
-              return const Center(child: Text('No notices found'));
+            if (posts.count == 0) {
+              return const Center(child: Text('No posts found'));
             }
 
             return ListView.builder(
               padding: EdgeInsets.all(16),
-              itemCount: notices.total,
+              itemCount: posts.count,
               itemBuilder: (context, index) {
-                final notice = notices.list[index];
+                final post = posts.list[index];
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 12.0),
-                  child: NoticeCard(notice: notice),
+                  child: PostCard(post: post),
                 );
               },
             );

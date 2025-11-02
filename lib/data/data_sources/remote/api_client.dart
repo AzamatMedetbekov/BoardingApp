@@ -4,15 +4,15 @@ import 'package:retrofit/retrofit.dart';
 
 part 'api_client.g.dart';
 
-@RestApi(baseUrl: 'https://api.stg.ziggle.gistory.me')
+@RestApi(baseUrl: 'https://api.bulletin.newbies.gistory.me')
 abstract class ApiClient{
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
   
-  @GET('/api/notice')
-  Future<NoticeListModel> getNoticeListByTag(
+  @GET('/posts')
+  Future<PostListModel> getPostListByTag(
     @Query('tags') String tag,
   );
 
-  @GET('/api/notice')
-  Future<NoticeListModel> getNoticeList();
+  @GET('/posts')
+  Future<PostListModel> getPostList();
 }

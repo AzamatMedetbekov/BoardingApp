@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/models/post_model.dart';
 
-class NoticeCard extends StatelessWidget {
-  const NoticeCard({super.key, required this.notice});
+class PostCard extends StatelessWidget {
+  const PostCard({super.key, required this.post});
 
-  final NoticeModel notice;
+  final PostModel post;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class NoticeCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            notice.title,
+            post.title,
             style: TextStyle(
               color: const Color(0xFF252525),
               fontSize: 16,
@@ -26,20 +26,20 @@ class NoticeCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          if(notice.imageUrls.isNotEmpty) ...[
+          if(post.images.isNotEmpty) ...[
             SizedBox(
               height:100,
               child:ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: notice.imageUrls.length,
+                itemCount: post.images.length,
                 itemBuilder: (context, index){
-                  final imageUrl = notice.imageUrls[index];
+                  final image = post.images[index].image;
                   return Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: ClipRRect(
                       borderRadius: BorderRadiusGeometry.circular(8),
                       child: Image.network(
-                        imageUrl,
+                        image,
                         width: 100,
                         height: 100,
                         fit: BoxFit.cover,
@@ -68,15 +68,15 @@ class NoticeCard extends StatelessWidget {
             )
           ],
           const SizedBox(height: 12),
-          Text(notice.content),
+          Text(post.body),
         ],
       ),
     );
   }
 }
 
-class TagCard extends StatelessWidget {
-  const TagCard({super.key, required this.content});
+class BoardCard extends StatelessWidget {
+  const BoardCard({super.key, required this.content});
 
   final String content;
 

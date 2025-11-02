@@ -59,8 +59,8 @@ class SectionHeader extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
-class TagHeader extends StatelessWidget implements PreferredSizeWidget {
-  const TagHeader({super.key});
+class BoardHeader extends StatelessWidget implements PreferredSizeWidget {
+  const BoardHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
