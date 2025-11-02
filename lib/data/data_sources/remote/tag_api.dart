@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:flutter_application_1/data/models/tag_list_model.dart';
-import 'package:flutter_application_1/data/models/tag_model.dart';
+import 'package:flutter_application_1/data/models/board_list_model.dart';
+import 'package:flutter_application_1/data/models/board_summary_model.dart';
 import 'package:http/http.dart' as http;
 
 class TagApi {

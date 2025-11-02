@@ -7,8 +7,12 @@ part 'users_model.g.dart';
 sealed class UsersModel with _$UsersModel {
   const UsersModel._();
 
-  const factory UsersModel({required String uuid, required String name}) =
-      _UsersModel;
+  const factory UsersModel({
+    required String id,
+    required String email,
+    required String nickname,
+    required DateTime createdAt,
+  }) = _UsersModel;
 
   factory UsersModel.fromJson(Map<String, dynamic> json) =>
       _$UsersModelFromJson(json);

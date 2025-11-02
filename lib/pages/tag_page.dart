@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/data_sources/remote/tag_api.dart';
-import 'package:flutter_application_1/data/models/tag_list_model.dart';
+import 'package:flutter_application_1/data/models/board_list_model.dart';
 import 'package:flutter_application_1/widgets/headers.dart';
 import 'package:flutter_application_1/widgets/notice.dart';
 
