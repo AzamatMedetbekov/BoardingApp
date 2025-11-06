@@ -1,9 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/data/data_sources/remote/api_client.dart';
-import 'package:flutter_application_1/data/models/post_list_model.dart';
+import 'package:flutter_application_1/data/bloc/home_page_bloc.dart';
 import 'package:flutter_application_1/widgets/headers.dart';
 import 'package:flutter_application_1/widgets/notice.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,45 +12,56 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final ApiClient _apiClient = ApiClient(Dio());
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF0F0F0),
-      appBar: HomeHeader(),
-      body: FutureBuilder(
-        future: _apiClient.getPostList(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return BlocProvider(
+      create: (context) => HomePageBloc()..add(const HomePageEvent.load()),
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF0F0F0),
+        appBar: HomeHeader(),
+        body: BlocBuilder<HomePageBloc, HomePageState>(
+          builder: (context, state) {
+            return state.when(
+              init: () => const Center(child: Text('Initialization...')),
 
-          if (snapshot.hasError) {
-            return Center(child: Text('An error occurred: ${snapshot.error}'));
-          }
+              loading: () => const Center(child: CircularProgressIndicator()),
 
-          if (snapshot.hasData) {
-            final PostListModel posts = snapshot.data!;
+              done: (postData) => RefreshIndicator(
+                onRefresh: () async {
+                  context.read<HomePageBloc>().add(const HomePageEvent.load());
+                },
+                child: ListView.builder(
+                  padding: EdgeInsets.all(16),
+                  itemCount: postData.count,
+                  itemBuilder: (context, index) {
+                    final post = postData.list[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12.0),
+                      child: PostCard(post: post),
+                    );
+                  },
+                ),
+              ),
 
-            if (posts.count == 0) {
-              return const Center(child: Text('No posts found'));
-            }
-
-            return ListView.builder(
-              padding: EdgeInsets.all(16),
-              itemCount: posts.count,
-              itemBuilder: (context, index) {
-                final post = posts.list[index];
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: PostCard(post: post),
-                );
-              },
+              error: (message) => Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(message),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<HomePageBloc>().add(
+                          const HomePageEvent.load(),
+                        );
+                      },
+                      child: const Text('Try again'),
+                    ),
+                  ],
+                ),
+              ),
             );
-          }
-          return const Center(child: Text('Something went wrong'));
-        },
+          },
+        ),
       ),
     );
   }
